@@ -3,9 +3,7 @@ const router = express.Router();
 const { homepage } = require("../controllers/indexControllers")
 
 
-router.get("/", (req,res,next) => {
-    res.json({ message : "homepage" })
-})
+router.get("/", homepage)
 
 
 
