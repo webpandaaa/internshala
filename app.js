@@ -14,7 +14,6 @@ app.use("/" , require("./routes/indexRoutes"));
 
 
 // error handling
-
 const ErrorHandler = require("./utils/ErrorHandler");
 const {generatedErrors} = require("./middlewares/errors")
 app.all("*" , (req,res,next) =>{
