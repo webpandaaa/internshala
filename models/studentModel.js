@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-const { default: mongoose } = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const studentModel = new mongoose.Schema(
     {
         email: {
             type : String,
             unique: true,
-            required: [True, "Email is required"],
+            required: [true, "Email is required"],
             match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
         },
             password:{
@@ -19,6 +19,15 @@ const studentModel = new mongoose.Schema(
 
 },{timestamps : true});
 
+studentModel.pre("save" , function(){
+
+    if(!this.isModified("password")){
+        return;
+    }
+
+    let salt = bcrypt.genSaltSync(10);
+    this.password = bcrypt.hashSync(this.password, salt);
+});
 
 const Student =mongoose.model("student" , studentModel);
 

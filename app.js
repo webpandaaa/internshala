@@ -9,6 +9,9 @@ require("./models/database").connectDatabase();
 //logger
 const logger = require("morgan");
 app.use(logger("tiny"));
+// Bodyparser
+app.use(express.json());
+app.use(express.urlencoded({extended : false}));
 
 
 //routes
