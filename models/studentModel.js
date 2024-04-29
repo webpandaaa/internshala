@@ -29,6 +29,11 @@ studentModel.pre("save" , function(){
     this.password = bcrypt.hashSync(this.password, salt);
 });
 
+
+studentModel.methods.comparepassword = function (password){
+    return bcrypt.compareSync(password , this.password);
+}
+
 const Student =mongoose.model("student" , studentModel);
 
 module.exports = Student;
