@@ -30,4 +30,7 @@ exports.studentsignin = catchAsyncErrors(async (req,res,next) => {
     sendtoken(student, 200, res);
 });
 
-exports.studentsignout = catchAsyncErrors(async (req,res,next) => {});
+exports.studentsignout = catchAsyncErrors(async (req,res,next) => {
+    res.clearCookie("token");
+    res.json({ message : "Successfully Signout"});
+});
