@@ -5,7 +5,13 @@ const { sendtoken } = require("../utils/Sendtoken");
 
 
 exports.homepage =  catchAsyncErrors(async (req,res,next) => {
-    res.json({ message : "homepage" });
+    res.json({ message : " Secure homepage!" });
+});
+
+
+exports.currentUser =  catchAsyncErrors(async (req,res,next) => {
+    const student = await Student.findById(req.id).exec();
+    res.json({student})
 });
 
 
