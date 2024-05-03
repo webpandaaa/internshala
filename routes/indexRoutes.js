@@ -4,7 +4,8 @@ const { homepage ,
     currentUser,
     studentsignup,
     studentsignin,
-    studentsignout
+    studentsignout,
+    studentsendmail
      } = require("../controllers/indexControllers");
 const { isAuthenticated } = require("../middlewares/auth");
 
@@ -22,6 +23,11 @@ router.post("/student/signin" , studentsignin);
 
 // Get / student /Signout
 router.get("/student/signout" ,isAuthenticated, studentsignout);
+
+// Get / student /Send-mail(forgot password)
+router.post("/student/send-mail" , studentsendmail);
+
+
 
 
 

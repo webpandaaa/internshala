@@ -8,12 +8,10 @@ exports.homepage =  catchAsyncErrors(async (req,res,next) => {
     res.json({ message : " Secure homepage!" });
 });
 
-
 exports.currentUser =  catchAsyncErrors(async (req,res,next) => {
     const student = await Student.findById(req.id).exec();
     res.json({student})
 });
-
 
 exports.studentsignup = catchAsyncErrors(async (req,res,next) => {
     const student = await new Student(req.body).save();
@@ -40,3 +38,24 @@ exports.studentsignout = catchAsyncErrors(async (req,res,next) => {
     res.clearCookie("token");
     res.json({ message : "Successfully Signout"});
 });
+
+exports.studentsendmail = catchAsyncErrors(async (req,res,next) => {
+    const student = await Student.findOne({email : req.body.email}).exec();
+    if(!student) 
+        return next(
+            new ErrorHandler("User not found with this email address" , 404)
+        );
+
+    const url = `${req.protocol}://${req.get("host")}/student/forget-link/${student._id}`;
+
+    
+    res.json({student, url});
+});
+
+
+
+
+
+
+
+
