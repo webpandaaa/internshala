@@ -48,6 +48,8 @@ exports.studentsendmail = catchAsyncErrors(async (req,res,next) => {
 
     const url = `${req.protocol}://${req.get("host")}/student/forget-link/${student._id}`;
 
+    sendmail(req,res,next,url);
+
     
     res.json({student, url});
 });
