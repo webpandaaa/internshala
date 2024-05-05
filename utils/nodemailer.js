@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 const ErrorHandler = require("./ErrorHandler");
 
-exports.sendmail = (req,res,next,url) => {
+exports.sendmail = (req,res,next,url) =>  {
     const transport = nodemailer.createTransport({
         service :"gmail",
         host : "smtp.gmail.com",
