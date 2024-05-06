@@ -4,6 +4,35 @@ const jwt = require("jsonwebtoken");
 
 const studentModel = new mongoose.Schema(
     {
+        firstname: {
+            type : String,
+            required : [true, "First Name is required"],
+            minLength: [4, "First name should be atleast 4 Character long"],
+        },
+
+        lastname: {
+            type : String,
+            required : [true, "last Name is required"],
+            minLength: [4, "last name should be atleast 4 Character long"],
+        },
+
+        contact: {
+            type : String,
+            required : [true, "Contact is required"],
+            maxLength: [10, "Contact must not exceed  10 Character"],
+            minLength: [10, "Contact should be atleast 10 Character long"],
+        },
+
+        city: {
+            type : String,
+            required : [true, "City is required"],
+            minLength: [3, "City should be atleast 3 Character long"],
+        },
+
+        gender: {type : String , enum:["Male" , "Female" , "Others"]},
+        
+        avatar: String,
+
         email: {
             type : String,
             unique: true,
@@ -22,6 +51,9 @@ const studentModel = new mongoose.Schema(
             type : String,
             default : "0"
         },
+
+        avatar: String,
+
 
     },
     {timestamps : true});

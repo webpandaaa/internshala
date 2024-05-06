@@ -90,6 +90,15 @@ exports.studentresetpassword = catchAsyncErrors(async (req,res,next) => {
     sendtoken(student,201,res);
 });
 
+exports.studentupdate = catchAsyncErrors(async (req,res,next) => {
+    const student = await Student.findByIdAndUpdate(req.params.id, req.body).exec();
+    res.status(200).json({
+        success: true,
+        message: "Student updated Successfullly!",
+        student,
+    })
+});
+
  
 
 
