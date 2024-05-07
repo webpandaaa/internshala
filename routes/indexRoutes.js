@@ -9,6 +9,7 @@ const { homepage ,
     studentforgetlink,
     studentresetpassword,
     studentupdate,
+    studentavatar,
      } = require("../controllers/indexControllers");
 const { isAuthenticated } = require("../middlewares/auth");
 
@@ -38,6 +39,9 @@ router.post("/student/reset-password/:id" , isAuthenticated , studentresetpasswo
 
 // Post / student /update/:id
 router.post("/student/update/:id" , isAuthenticated , studentupdate );
+
+// Post / student /avatar/:id
+router.post("/student/avatar/:id" , isAuthenticated , studentavatar );
 
 
 
