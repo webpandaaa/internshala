@@ -3,6 +3,8 @@ const Student = require("../models/studentModel");
 const ErrorHandler = require("../utils/ErrorHandler");
 const { sendtoken } = require("../utils/Sendtoken");
 const { sendmail } = require("../utils/nodemailer")
+const path = require("path");
+const imagekit = require("../utils/imagekit").initImageKit()
 
 
 exports.homepage =  catchAsyncErrors(async (req,res,next) => {
@@ -99,7 +101,27 @@ exports.studentupdate = catchAsyncErrors(async (req,res,next) => {
 });
 
 exports.studentavatar = catchAsyncErrors(async (req,res,next) => {
-   res.json({file: req.files})
+    const student = await Student.findById(req.params.id).exec();
+    const file = req.files.avatar;
+    const modifiedFileName = `resumebuilder-${Date.now()}${path.extname(file.name)}`;
+
+
+    if(student.avatar.fileId !== ""){
+        await imagekit.deleteFile(student.avatar.fileId);
+    }
+    
+    const {fileId,url} = await imagekit.upload({
+        file: file.data,
+        fileName : modifiedFileName,
+    });
+
+    student.avatar = {fileId,url};
+    await student.save();
+
+    res.status(200).json({
+        success: true,
+        message: "Profile Updated!",
+    })
 });
 
  

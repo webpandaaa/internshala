@@ -31,8 +31,6 @@ const studentModel = new mongoose.Schema(
 
         gender: {type : String , enum:["Male" , "Female" , "Others"]},
         
-        avatar: String,
-
         email: {
             type : String,
             unique: true,
@@ -52,9 +50,13 @@ const studentModel = new mongoose.Schema(
             default : "0"
         },
 
-        avatar: String,
-
-
+        avatar: {
+            type : Object,
+            default :{
+                fileId: '',
+                url : "https://images.unsplash.com/photo-1715089033372-f1c4856beef9?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+        },
     },
     {timestamps : true});
 
