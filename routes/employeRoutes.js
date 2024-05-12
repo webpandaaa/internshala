@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { homepage , 
-    //currentUser
+    currentUser,
     employesignup,
     employesignin,
     employesignout,
@@ -17,17 +17,17 @@ const { isAuthenticated } = require("../middlewares/auth");
 //get
 router.get("/", homepage)
 
-// //Post  /employe 
-// router.post("/employe", isAuthenticated, currentUser)
+// //Post  /employe / currentUser
+router.post("/currentEmploye", isAuthenticated, currentUser)
 
 // Post / employe /SignUp
 router.post("/signup" , employesignup);
 
 // // Post / employe /Signin
-// router.post("/signin" , employesignin);
+router.post("/signin" , employesignin);
 
 // // Get / employe /Signout
-// router.get("/employe/signout" ,isAuthenticated, employesignout);
+router.get("/signout" ,isAuthenticated, employesignout);
 
 // // Post / employe /Send-mail(forgot password)
 // router.post("/employe/send-mail" , employesendmail);

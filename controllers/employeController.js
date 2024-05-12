@@ -11,36 +11,36 @@ exports.homepage =  catchAsyncErrors(async (req,res,next) => {
     res.json({ message : " Secure Employe homepage!" });
 });
 
-// exports.currentUser =  catchAsyncErrors(async (req,res,next) => {
-//     const student = await Student.findById(req.id).exec();
-//     res.json({student})
-// });
+exports.currentUser =  catchAsyncErrors(async (req,res,next) => {
+    const employe = await Employe.findById(req.id).exec();
+    res.json({employe})
+});
 
 exports.employesignup = catchAsyncErrors(async (req,res,next) => {
     const employe = await new Employe(req.body).save();
     sendtoken(employe, 201, res);
 });
 
-// exports.studentsignin = catchAsyncErrors(async (req,res,next) => {
-//     const student = await Student.findOne({email : req.body.email})
-//     .select("+password")
-//     .exec();
+exports.employesignin = catchAsyncErrors(async (req,res,next) => {
+    const employe = await Employe.findOne({email : req.body.email})
+    .select("+password")
+    .exec();
 
-//     if(!student) 
-//         return next(
-//             new ErrorHandler("User not found with this email address" , 404)
-//         );
+    if(!employe) 
+        return next(
+            new ErrorHandler("User not found with this email address" , 404)
+        );
 
-//     const isMatch = student.comparepassword(req.body.password);
-//     if(!isMatch) return next(new ErrorHandler("Wrong Credentials" , 500));
+    const isMatch = employe.comparepassword(req.body.password);
+    if(!isMatch) return next(new ErrorHandler("Wrong Credentials" , 500));
 
-//     sendtoken(student, 200, res);
-// });
+    sendtoken(employe, 200, res);
+});
 
-// exports.studentsignout = catchAsyncErrors(async (req,res,next) => {
-//     res.clearCookie("token");
-//     res.json({ message : "Successfully Signout"});
-// });
+exports.employesignout = catchAsyncErrors(async (req,res,next) => {
+    res.clearCookie("token");
+    res.json({ message : "Successfully Signout"});
+});
 
 // exports.studentsendmail = catchAsyncErrors(async (req,res,next) => {
 //     const student = await Student.findOne({email : req.body.email}).exec();
