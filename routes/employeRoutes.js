@@ -30,19 +30,19 @@ router.post("/signin" , employesignin);
 router.get("/signout" ,isAuthenticated, employesignout);
 
 // // Post / employe /Send-mail(forgot password)
-// router.post("/employe/send-mail" , employesendmail);
+router.post("/send-mail" , employesendmail);
 
 // // Get / employe /forget-link/:employe_id
-// router.get("/employe/forget-link/:id" , employeforgetlink);
+router.get("/forget-link/:id" , employeforgetlink);
 
-// // Post / employe /reset-password/:employe_id
-// router.post("/employe/reset-password/:id" , isAuthenticated , employeresetpassword );
+// // Post /reset-password/:employe_id
+router.post("/reset-password/:id" , isAuthenticated , employeresetpassword );
 
 // // Post / employe /update/:id
-// router.post("/employe/update/:id" , isAuthenticated , employeupdate );
+router.post("/update/:id" , isAuthenticated , employeupdate );
 
 // // Post / employe /avatar/:id
-// router.post("/employe/avatar/:id" , isAuthenticated , employeavatar );
+router.post("/avatar/:id" , isAuthenticated , employeavatar );
 
 
 module.exports = router;

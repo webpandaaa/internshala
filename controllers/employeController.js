@@ -42,87 +42,87 @@ exports.employesignout = catchAsyncErrors(async (req,res,next) => {
     res.json({ message : "Successfully Signout"});
 });
 
-// exports.studentsendmail = catchAsyncErrors(async (req,res,next) => {
-//     const student = await Student.findOne({email : req.body.email}).exec();
+exports.employesendmail = catchAsyncErrors(async (req,res,next) => {
+    const employe = await Employe.findOne({email : req.body.email}).exec();
     
-//     if(!student) 
-//         return next(
-//             new ErrorHandler("User not found with this email address" , 404)
-//         );
+    if(!employe) 
+        return next(
+            new ErrorHandler("User not found with this email address" , 404)
+        );
 
-//     const url = `${req.protocol}://${req.get("host")}/student/forget-link/${student._id}`;
+    const url = `${req.protocol}://${req.get("host")}/employe/forget-link/${employe._id}`;
     
-//     sendmail(req, res, next, url);
-//     student.resetPasswordToken = "1";
-//     await student.save();
-//     res.json({student, url});
-// });
+    sendmail(req, res, next, url);
+    employe.resetPasswordToken = "1";
+    await employe.save();
+    res.json({employe, url});
+});
 
-// exports.studentforgetlink = catchAsyncErrors(async (req,res,next) => {
-//     const student = await Student.findById(req.params.id).exec();
+exports.employeforgetlink = catchAsyncErrors(async (req,res,next) => {
+    const employe = await Employe.findById(req.params.id).exec();
     
-//     if(!student) 
-//         return next(
-//             new ErrorHandler("User not found with this email address" , 404)
-//     );
+    if(!employe) 
+        return next(
+            new ErrorHandler("User not found with this email address" , 404)
+    );
 
 
-//     if( student.resetPasswordToken == "1"){
-//         student.resetPasswordToken = "0";
-//         student.password = req.body.password;
-//         await student.save();
-//     } 
-//     else{
-//         return next(
-//             new ErrorHandler(
-//                 "Invalid Password Link! Please try again",500 
-//             )
-//         )
-//     }
+    if( employe.resetPasswordToken == "1"){
+        employe.resetPasswordToken = "0";
+        employe.password = req.body.password;
+        await employe.save();
+    } 
+    else{
+        return next(
+            new ErrorHandler(
+                "Invalid Password Link! Please try again",500 
+            )
+        )
+    }
 
-//     res.status(200).json({
-//         message: "password has been successfully changed"
-//     });
-// });
+    res.status(200).json({
+        message: "password has been successfully changed"
+    });
+});
 
-// exports.studentresetpassword = catchAsyncErrors(async (req,res,next) => {
-//     const student  = await Student.findById(req.id).exec();
-//     student.password = req.body.password;
-//     await student.save();  
-//     sendtoken(student,201,res);
-// });
+exports.employeresetpassword = catchAsyncErrors(async (req,res,next) => {
+    const employe  = await Employe.findById(req.id).exec();
+    employe.password = req.body.password;
+    await employe.save();  
+    sendtoken(employe,201,res);
+});
 
-// exports.studentupdate = catchAsyncErrors(async (req,res,next) => {
-//     await Student.findByIdAndUpdate(req.params.id, req.body).exec();
-//     res.status(200).json({
-//         success: true,
-//         message: "Student updated Successfullly!",
-//     })
-// });
+exports.employeupdate = catchAsyncErrors(async (req,res,next) => {
+    await Employe.findByIdAndUpdate(req.params.id, req.body).exec();
+    res.status(200).json({
+        success: true,
+        message: "employe updated Successfullly!",
+    })
+});
 
-// exports.studentavatar = catchAsyncErrors(async (req,res,next) => {
-//     const student = await Student.findById(req.params.id).exec();
-//     const file = req.files.avatar;
-//     const modifiedFileName = `resumebuilder-${Date.now()}${path.extname(file.name)}`;
+exports.employeavatar = catchAsyncErrors(async (req,res,next) => {
+    const employe = await Employe.findById(req.params.id).exec();
+    const file = req.files.organizationlogo;
+    const modifiedFileName = `resumebuilder-${Date.now()}${path.extname(file.name)}`;
 
 
-//     if(student.avatar.fileId !== ""){
-//         await imagekit.deleteFile(student.avatar.fileId);
-//     }
+    if(employe.organizationlogo.fileId !== ""){
+        await imagekit.deleteFile(employe.organizationlogo.fileId);
+    }
     
-//     const {fileId,url} = await imagekit.upload({
-//         file: file.data,
-//         fileName : modifiedFileName,
-//     });
+    const {fileId,url} = await imagekit.upload({
+        file: file.data,
+        fileName : modifiedFileName,
+    });
 
-//     student.avatar = {fileId,url};
-//     await student.save();
+    employe.organizationlogo = {fileId,url};  
+    await employe.save();
 
-//     res.status(200).json({
-//         success: true,
-//         message: "Profile Updated!",
-//     })
-// });
+    res.status(200).json({
+        success: true,
+        message: "Profile Updated!",
+    })
+});
 
  
 
