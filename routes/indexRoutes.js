@@ -44,10 +44,4 @@ router.post("/student/update/:id" , isAuthenticated , studentupdate );
 router.post("/student/avatar/:id" , isAuthenticated , studentavatar );
 
 
-
-
-
-
-
-
 module.exports = router;
