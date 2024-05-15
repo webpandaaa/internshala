@@ -18,7 +18,7 @@ const internshipModel = new mongoose.Schema(
             },
             amount: Number,
         },
-        perkes : String,
+        perks : String,
         assesments : String, 
        
     },

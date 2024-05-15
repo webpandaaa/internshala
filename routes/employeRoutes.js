@@ -5,11 +5,13 @@ const { homepage ,
     employesignup,
     employesignin,
     employesignout,
-    employesendmail,
+    employesendmail, 
     employeforgetlink,
     employeresetpassword,
     employeupdate,
     employeavatar,
+    createinternship,
+    
     
      } = require("../controllers/employeController");
 const { isAuthenticated } = require("../middlewares/auth");
@@ -43,6 +45,12 @@ router.post("/update/:id" , isAuthenticated , employeupdate );
 
 // // Post / employe /avatar/:id
 router.post("/avatar/:id" , isAuthenticated , employeavatar );
+
+
+// -------------------------------- InternShip -------------------------------//
+// // Post / employe /internship/create
+router.post("/internship/create" , isAuthenticated , createinternship );
+
 
 
 module.exports = router;
