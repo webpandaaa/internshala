@@ -11,6 +11,8 @@ const { homepage ,
     employeupdate,
     employeavatar,
     createinternship,
+    readinternship,
+    readsingleinternship,
     
     
      } = require("../controllers/employeController");
@@ -25,31 +27,39 @@ router.post("/currentEmploye", isAuthenticated, currentUser)
 // Post / employe /SignUp
 router.post("/signup" , employesignup);
 
-// // Post / employe /Signin
+// Post / employe /Signin
 router.post("/signin" , employesignin);
 
-// // Get / employe /Signout
+// Get / employe /Signout
 router.get("/signout" ,isAuthenticated, employesignout);
 
-// // Post / employe /Send-mail(forgot password)
+// Post / employe /Send-mail(forgot password)
 router.post("/send-mail" , employesendmail);
 
-// // Get / employe /forget-link/:employe_id
+// Get / employe /forget-link/:employe_id
 router.get("/forget-link/:id" , employeforgetlink);
 
-// // Post /reset-password/:employe_id
+// Post /reset-password/:employe_id
 router.post("/reset-password/:id" , isAuthenticated , employeresetpassword );
 
-// // Post / employe /update/:id
+// Post / employe /update/:id
 router.post("/update/:id" , isAuthenticated , employeupdate );
 
-// // Post / employe /avatar/:id
+// Post / employe /avatar/:id
 router.post("/avatar/:id" , isAuthenticated , employeavatar );
 
 
 // -------------------------------- InternShip -------------------------------//
-// // Post / employe /internship/create
+// Post / employe /internship/create
 router.post("/internship/create" , isAuthenticated , createinternship );
+
+// Post / employe /internship/read
+router.post("/internship/read" , isAuthenticated , readinternship );
+
+// Post / employe /internship/read/:id
+router.post("/internship/read/:id" , isAuthenticated , readsingleinternship );
+
+
 
 
 
