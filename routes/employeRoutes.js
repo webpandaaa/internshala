@@ -13,6 +13,9 @@ const { homepage ,
     createinternship,
     readinternship,
     readsingleinternship,
+    createjob,
+    readjob,
+    readsinglejob,
     
     
      } = require("../controllers/employeController");
@@ -58,6 +61,17 @@ router.post("/internship/read" , isAuthenticated , readinternship );
 
 // Post / employe /internship/read/:id
 router.post("/internship/read/:id" , isAuthenticated , readsingleinternship );
+
+
+// -------------------------------- Job -------------------------------//
+// Post / employe /job/create
+router.post("/job/create" , isAuthenticated , createjob );
+
+// Post / employe /job/read
+router.post("/job/read" , isAuthenticated , readjob );
+
+// Post / employe /job/read/:id
+router.post("/job/read/:id" , isAuthenticated , readsinglejob );
 
 
 
