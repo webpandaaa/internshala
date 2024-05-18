@@ -1,9 +1,12 @@
 const { catchAsyncErrors } = require("../middlewares/catchAsync");
 const Student = require("../models/studentModel");
+const internship = require("../models/internshipModel");
+const Job = require("../models/jobModel");
 const ErrorHandler = require("../utils/ErrorHandler");
 const { sendtoken } = require("../utils/Sendtoken");
 const { sendmail } = require("../utils/nodemailer")
 const path = require("path");
+const Internship = require("../models/internshipModel");
 const imagekit = require("../utils/imagekit").initImageKit()
 
 
@@ -124,7 +127,38 @@ exports.studentavatar = catchAsyncErrors(async (req,res,next) => {
     })
 });
 
- 
+// ------------------------- apply internship -------------------------//
+
+
+exports.applyinternship =  catchAsyncErrors(async (req,res,next) => {
+    const student = await Student.findById(req.id).exec();
+    const internship = await Internship.findById(req.params.internshipid).exec();
+
+    student.internships.push(internship._id);
+    internship.students.push(student._id); 
+    await student.save();
+    await internship.save();
+    
+    res.json({student})
+});
+
+
+
+exports.applyjob =  catchAsyncErrors(async (req,res,next) => {
+    const student = await Student.findById(req.id).exec();
+    const job = await Job.findById(req.params.jobid).exec();
+
+    student.jobs.push(job._id);
+    job.students.push(student._id); 
+
+    await student.save();
+    await job.save();
+
+    res.json({student , job})
+});
+
+
+
 
 
 

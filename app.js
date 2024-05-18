@@ -28,7 +28,7 @@ app.use(fileupload());
 
 
 //routes
-app.use("/ " , require("./routes/indexRoutes"));
+app.use("/" , require("./routes/indexRoutes"));
 app.use("/resume" , require("./routes/resumeRoutes"));
 app.use("/employe" , require("./routes/employeRoutes"));
 

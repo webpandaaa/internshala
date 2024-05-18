@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const jobModel = new mongoose.Schema(
     {
-        student: [{type : mongoose.Schema.Types.ObjectId, ref: "student"}],
+        students: [{type : mongoose.Schema.Types.ObjectId, ref: "student"}],
         employe: {type : mongoose.Schema.Types.ObjectId, ref: "employe"},
         title: String,
         skill: String, 
@@ -18,6 +18,6 @@ const jobModel = new mongoose.Schema(
     },
     {timestamps : true});
 
-const Job =mongoose.model("job" , jobModel);
+const Job = mongoose.model("job" , jobModel);
 
 module.exports = Job;

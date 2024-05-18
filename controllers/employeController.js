@@ -1,7 +1,7 @@
 const { catchAsyncErrors } = require("../middlewares/catchAsync");
 const Employe = require("../models/employeModel");
 const Internship = require("../models/internshipModel");
-const Job = require("../models/jobMoel");
+const Job = require("../models/jobModel");
 const ErrorHandler = require("../utils/ErrorHandler");
 const { sendtoken } = require("../utils/Sendtoken");
 const { sendmail } = require("../utils/nodemailer")
